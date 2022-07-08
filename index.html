@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual Exit - Biconomy</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="form-wrapper">
+        <form id="form">
+          <label class="text-input-label" for="depositHash">deposit hash</label>
+          <input
+            class="text-input"
+            type="text"
+            id="depositHash"
+            name="depositHash"
+            required
+          />
+
+          <label class="text-input-label" for="fromChainId"
+            >from chain id</label
+          >
+          <input
+            class="text-input"
+            type="number"
+            id="fromChainId"
+            name="fromChainId"
+            required
+          />
+
+          <button class="submit-btn" type="submit">Submit</button>
+        </form>
+
+        <p class="message"></p>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
