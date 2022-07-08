@@ -38,4 +38,4 @@ async function handleFormSubmit(e) {
   }
 }
 
-manualExitForm?.addEventListener("submit", handleFormSubmit);
+manualExitForm.addEventListener("submit", handleFormSubmit);
