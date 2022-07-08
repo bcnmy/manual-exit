@@ -1,7 +1,5 @@
 import "./style.css";
 
-import "./style.css";
-
 const app = document.querySelector("#app");
 const manualExitForm = app.querySelector("#form");
 const message = app.querySelector(".message");
