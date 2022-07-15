@@ -9,6 +9,17 @@
   <body>
     <div id="app">
       <div class="form-wrapper">
+        <image
+          class="hyphen-logo"
+          src="hyphen-logo.svg"
+          alt="Hyphen - Instant Cross Chain Transfers"
+        />
+        <p class="description">
+          Every deposit and exit is handled by our backend. However, if a
+          deposit has been pending for more than 15 minutes, you can trigger the
+          exit manually by entering your deposit hash and selecting your source
+          chain. You don't have to connect your wallet.
+        </p>
         <form id="form">
           <label class="text-input-label" for="depositHash">deposit hash</label>
           <input
@@ -19,16 +30,8 @@
             required
           />
 
-          <label class="text-input-label" for="fromChainId"
-            >from chain id</label
-          >
-          <input
-            class="text-input"
-            type="number"
-            id="fromChainId"
-            name="fromChainId"
-            required
-          />
+          <label class="text-input-label" for="from-chain">from chain</label>
+          <select name="networks" id="from-chain"></select>
 
           <button class="submit-btn" type="submit">Submit</button>
         </form>

@@ -1,21 +1,34 @@
 import "./style.css";
 
-const app = document.querySelector("#app");
-const manualExitForm = app.querySelector("#form");
-const message = app.querySelector(".message");
+window.addEventListener("load", init);
+
+async function fetchNetworks() {
+  const res = await window.fetch(
+    "https://hyphen-v2-api.biconomy.io/api/v1/configuration/networks"
+  );
+
+  const data = await res.json().catch((err) => console.error(err));
+  return data.message;
+}
 
 async function handleFormSubmit(e) {
   e.preventDefault();
 
+  const networksSelect = document.querySelector("#from-chain");
+  const submitBtn = document.querySelector(".submit-btn");
+  const message = document.querySelector(".message");
+
   const inputs = e.target.elements;
   const depositHash = inputs["depositHash"].value;
-  const fromChainId = inputs["fromChainId"].valueAsNumber;
+  const fromChainId = networksSelect.value;
+  message.className = "message";
 
   const requestData = {
     depositHash,
     fromChainId,
   };
 
+  submitBtn.textContent = "Submitting...";
   const res = await window.fetch(
     "https://hyphen-v2-api.biconomy.io/api/v1/insta-exit/execute",
     {
@@ -26,16 +39,30 @@ async function handleFormSubmit(e) {
       body: JSON.stringify(requestData),
     }
   );
+  submitBtn.textContent = "Submit";
+
+  const data = await res.json().catch((err) => console.error(err));
 
   if (res.ok) {
-    const data = await res.json();
     const exitHash = data.exitHash;
     message.textContent = `Exit hash: ${exitHash}`;
     message.className = "message success";
   } else {
-    message.textContent = `Error: ${res.status}`;
+    message.textContent = data
+      ? `Error: ${res.status}. ${data.message}`
+      : `Error: ${res.status}`;
     message.className = "message error";
   }
 }
 
-manualExitForm.addEventListener("submit", handleFormSubmit);
+async function init() {
+  const networks = await fetchNetworks();
+  const manualExitForm = document.querySelector("#form");
+  const networksSelect = document.querySelector("#from-chain");
+
+  networks.forEach((network) => {
+    networksSelect.add(new Option(network.name, network.chainId));
+  });
+
+  manualExitForm.addEventListener("submit", handleFormSubmit);
+}
