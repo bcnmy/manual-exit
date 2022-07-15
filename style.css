@@ -33,6 +33,20 @@ body {
   }
 }
 
+.hyphen-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.description {
+  margin-bottom: 40px;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: hsl(214, 100%, 97%);
+}
+
 #form {
   display: flex;
   flex-direction: column;
@@ -50,6 +64,14 @@ body {
   height: 40px;
   margin-bottom: 40px;
   padding: 0 12px;
+  border: 1px solid hsl(0deg 0% 87%);
+  border-radius: 8px;
+}
+
+select {
+  height: 40px;
+  margin-bottom: 40px;
+  padding: 0 8px;
   border: 1px solid hsl(0deg 0% 87%);
   border-radius: 8px;
 }
